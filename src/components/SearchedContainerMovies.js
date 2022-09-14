@@ -1,13 +1,13 @@
 import { useContext } from 'react';
-import { ContainerMovies, CardMovie } from '.';
+import { ContainerMovies, CardMovie, Loading } from '.';
 import { MovieContext } from '../App';
 
 function SearchedContainerMovies() {
-  const { searchResult } = useContext(MovieContext);
+  const { searchResult, isLoading } = useContext(MovieContext);
 
-  // TODO: create loading
-
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <ContainerMovies>
       {searchResult?.map(movie => {
         const { Title, Year, Type, Poster, imdbID } = movie;

@@ -18,7 +18,6 @@ function Navbar() {
 
     try {
       const searchedMovies = await searchMovies(url, searchValue);
-      console.log(searchedMovies);
       setIsLoading(false);
       setSearchResult(searchedMovies?.Search);
     } catch (error) {
@@ -49,7 +48,7 @@ function Navbar() {
             className='mr-2 bg-transparent outline-none w-full autofill:shadow-none search-input'
             onChange={e => setSearchValue(e.target.value)}
           />
-          <button type='submit'>
+          <button type='submit' className='active:opacity-50'>
             <GoSearch />
           </button>
         </form>

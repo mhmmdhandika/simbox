@@ -5,6 +5,13 @@
 @tailwind utilities;
 
 * {
-  @apply text-slate-800;
   font-family: 'Open Sans', sans-serif;
+}
+
+.search-input:-webkit-autofill,
+.search-input:-webkit-autofill:focus {
+  transition: background-color 600000s 0s, color 600000s 0s;
+}
+.search-input[data-autocompleted] {
+  background-color: transparent !important;
 }

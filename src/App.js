@@ -12,7 +12,6 @@ const MovieContext = createContext(null);
 const url = 'http://www.omdbapi.com/?apikey=e050880d&';
 
 // create back to home
-
 function App() {
   const [searchResult, setSearchResult] = useState([]);
   const [isLoading, setIsLoading] = useState(false);

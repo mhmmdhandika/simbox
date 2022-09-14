@@ -4,7 +4,8 @@ import { MovieContext } from '../App';
 
 function SearchedContainerMovies() {
   const { searchResult } = useContext(MovieContext);
-  console.log(searchResult);
+
+  // TODO: create loading
 
   return (
     <ContainerMovies>
@@ -18,6 +19,8 @@ function SearchedContainerMovies() {
             type={Type}
             poster={Poster}
             imdbID={imdbID}
+            typeCard='searched'
+            key={imdbID}
           />
         );
       })}

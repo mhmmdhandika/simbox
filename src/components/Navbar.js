@@ -1,10 +1,12 @@
 import { useState, useContext } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { BiArrowBack as BackIcon } from 'react-icons/bi';
 import { MovieContext } from '../App';
 import { GoSearch } from 'react-icons/go';
 import { searchMovies } from '../features/.';
 
 function Navbar() {
+  const location = useLocation();
   const navigate = useNavigate();
   let { url, setSearchResult, setIsLoading } = useContext(MovieContext);
   const [searchValue, setSearchValue] = useState(null);
@@ -26,10 +28,17 @@ function Navbar() {
 
   return (
     <nav className='sticky top-0 p-4 bg-white'>
-      <div>
-        <h1 className='hidden'>Simbox</h1>
+      <div className='w-full grid items-center grid-cols-4'>
+        <Link
+          to='/'
+          className={`${
+            location.pathname === '/' ? 'invisible' : ''
+          } hover:opacity-50`}
+        >
+          <BackIcon size='1.5rem' />
+        </Link>
         <form
-          className='flex m-auto w-fit max-w-xs bg-slate-200 px-3 py-1 rounded-md md:min-w-[40%]'
+          className='w-full col-span-2 flex m-auto bg-slate-200 px-3 py-1 rounded-md xl:max-w-[80%]'
           onSubmit={handleSubmit}
         >
           <input
@@ -37,7 +46,7 @@ function Navbar() {
             name='search-movie'
             id='search-movie'
             placeholder='Search movie'
-            className='mr-2 bg-transparent outline-none w-full'
+            className='mr-2 bg-transparent outline-none w-full autofill:shadow-none search-input'
             onChange={e => setSearchValue(e.target.value)}
           />
           <button type='submit'>

@@ -1,4 +1,25 @@
+import SharedLayout from './SharedLayout';
 import Navbar from './Navbar';
-import InitialDisplay from './InitialDisplay';
+import CardMovie from './CardMovie';
+import ContainerMovies from './ContainerMovies';
+import LoadContainerMovies from './LoadContainerMovies';
+import SearchedContainerMovies from './SearchedContainerMovies';
+import Error from './Error';
+import Loading from './Loading';
+import Home from './Home';
+import NoMovies from './NoMovies';
+import NotFound from './NotFound';
 
-export { Navbar, InitialDisplay };
+export {
+  SharedLayout,
+  Navbar,
+  CardMovie,
+  ContainerMovies,
+  LoadContainerMovies,
+  SearchedContainerMovies,
+  Error,
+  Loading,
+  Home,
+  NoMovies,
+  NotFound,
+};

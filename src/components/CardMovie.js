@@ -1,8 +1,20 @@
 import { FiTrash2 as TrashIcon, FiSave as SaveIcon } from 'react-icons/fi';
 
-function CardMovie({ title, year, type, poster, typeCard }) {
+function CardMovie({ title, year, type, poster, imdbID, typeCard }) {
+  const getImdbID = e => {
+    const imdbid =
+      e.target.parentElement.parentElement.parentElement.attributes.getNamedItem(
+        'data-imdbid'
+      ).value;
+
+    return imdbid;
+  };
+
   return (
-    <article className='text-slate-700 rounded-lg overflow-hidden'>
+    <article
+      data-imdbid={imdbID}
+      className='text-slate-700 rounded-lg overflow-hidden'
+    >
       <img
         src={poster}
         alt={`${title}'s poster`}
@@ -13,7 +25,11 @@ function CardMovie({ title, year, type, poster, typeCard }) {
         <p className='my-2'>Year: {year}</p>
         <p className='mt-2'>Type: {type}</p>
         <div className='flex justify-between mt-2 text-sm'>
-          <button className='w-full border border-slate-500 rounded-md mr-1 py-1 px-2 hover:bg-slate-500 hover:text-white hover:font-bold'>
+          {/* FIXME: change onclick event in these button */}
+          <button
+            className='w-full border border-slate-500 rounded-md mr-1 py-1 px-2 hover:bg-slate-500 hover:text-white hover:font-bold'
+            onClick={getImdbID}
+          >
             {window.innerWidth >= 1024 ? 'See details' : 'Details'}
           </button>
           <button
@@ -22,6 +38,7 @@ function CardMovie({ title, year, type, poster, typeCard }) {
                 ? 'border-blue-500 hover:bg-blue-500'
                 : 'border-red-400 hover:bg-red-400'
             }`}
+            onClick={getImdbID}
           >
             {typeCard === 'searched' ? <SaveIcon /> : <TrashIcon />}
           </button>

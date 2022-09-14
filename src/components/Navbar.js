@@ -8,7 +8,7 @@ import { searchMovies } from '../features/.';
 function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
-  let { url, setSearchResult, setIsLoading } = useContext(MovieContext);
+  const { url, setSearchResult, setIsLoading } = useContext(MovieContext);
   const [searchValue, setSearchValue] = useState(null);
 
   const handleSubmit = async e => {
@@ -17,10 +17,12 @@ function Navbar() {
     setIsLoading(true);
 
     try {
+      // TODO: try use useMemo to memoization
       const searchedMovies = await searchMovies(url, searchValue);
       setIsLoading(false);
       setSearchResult(searchedMovies?.Search);
     } catch (error) {
+      setIsLoading(false);
       throw new Error(error);
     }
   };
@@ -47,6 +49,7 @@ function Navbar() {
             placeholder='Search movie'
             className='mr-2 bg-transparent outline-none w-full autofill:shadow-none search-input'
             onChange={e => setSearchValue(e.target.value)}
+            required
           />
           <button type='submit' className='active:opacity-50'>
             <GoSearch />

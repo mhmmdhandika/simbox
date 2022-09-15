@@ -9,6 +9,7 @@ import Loading from './Loading';
 import Home from './Home';
 import NoMovies from './NoMovies';
 import NotFound from './NotFound';
+import DetailsMovie from './DetailsMovie';
 
 export {
   SharedLayout,
@@ -22,4 +23,5 @@ export {
   Home,
   NoMovies,
   NotFound,
+  DetailsMovie,
 };

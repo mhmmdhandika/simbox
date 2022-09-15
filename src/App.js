@@ -5,6 +5,7 @@ import {
   Home,
   SearchedContainerMovies,
   NotFound,
+  DetailsMovie,
 } from './components/index';
 import { checkStorage } from './features/storage';
 
@@ -38,6 +39,7 @@ function App() {
                 path='/search'
                 element={<SearchedContainerMovies />}
               />
+              <Route exact path='/details' element={<DetailsMovie />} />
             </Route>
             <Route path='*' element={<NotFound />} />
           </Routes>

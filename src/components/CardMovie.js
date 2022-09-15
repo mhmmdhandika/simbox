@@ -1,6 +1,9 @@
+import { useNavigate } from 'react-router-dom';
 import { FiTrash2 as TrashIcon, FiSave as SaveIcon } from 'react-icons/fi';
 
 function CardMovie({ title, year, type, poster, imdbID, typeCard }) {
+  const navigate = useNavigate();
+
   const getImdbID = e => {
     const imdbid =
       e.target.parentElement.parentElement.parentElement.attributes.getNamedItem(
@@ -28,7 +31,14 @@ function CardMovie({ title, year, type, poster, imdbID, typeCard }) {
           {/* FIXME: change onclick event in these button */}
           <button
             className='w-full border border-slate-500 rounded-md mr-1 py-1 px-2 hover:bg-slate-500 hover:text-white hover:font-bold'
-            onClick={getImdbID}
+            onClick={e => {
+              console.log(
+                e.target.parentElement.parentElement.parentElement.attributes.getNamedItem(
+                  'data-imdbid'
+                ).value
+              );
+              navigate('/details');
+            }}
           >
             {window.innerWidth >= 1024 ? 'See details' : 'Details'}
           </button>

@@ -1,5 +1,5 @@
 import { useState, useContext, useEffect } from 'react';
-import { Link, useNavigate, useLocation } from 'react-router-dom';
+import { useNavigate, useLocation } from 'react-router-dom';
 import { BiArrowBack as BackIcon } from 'react-icons/bi';
 import { MovieContext } from '../App';
 import { GoSearch } from 'react-icons/go';
@@ -32,7 +32,7 @@ function Navbar() {
 
   return (
     <nav className='sticky top-0 p-4 bg-white'>
-      <div className='w-full grid items-center grid-cols-4'>
+      <div className='w-full md:max-w-[97%] mx-auto grid items-center grid-cols-4'>
         <button
           className={`${
             location.pathname === '/' ? 'invisible' : ''
@@ -44,7 +44,7 @@ function Navbar() {
           <BackIcon size='1.5rem' />
         </button>
         {location.pathname === '/details' ? (
-          <h1 className='col-span-2 text-center text-lg'>Details of Movie</h1>
+          <h1 className='col-span-2 text-center text-lg'>Details movie</h1>
         ) : (
           <form
             className='w-full col-span-2 flex m-auto bg-slate-200 px-3 py-1 rounded-md xl:max-w-[80%]'

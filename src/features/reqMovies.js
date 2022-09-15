@@ -8,4 +8,11 @@ async function searchMovies(url, searchValue) {
   return resp;
 }
 
-export { searchMovies };
+async function getMovieDetails(url, imdbID) {
+  const fetchMovie = await fetch(`${url}i=${imdbID}`);
+  const resp = await fetchMovie.json();
+
+  return resp;
+}
+
+export { searchMovies, getMovieDetails };

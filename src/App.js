@@ -10,11 +10,13 @@ import {
 import { checkStorage } from './features/storage';
 
 const MovieContext = createContext(null);
+// FIXME: replace api key with env
 const url = 'http://www.omdbapi.com/?apikey=e050880d&';
 
 // create back to home
 function App() {
   const [searchResult, setSearchResult] = useState([]);
+  const [detailsMovie, setDetailsMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
 
   checkStorage();
@@ -26,8 +28,10 @@ function App() {
           value={{
             url,
             searchResult,
+            detailsMovie,
             isLoading,
             setSearchResult,
+            setDetailsMovie,
             setIsLoading,
           }}
         >

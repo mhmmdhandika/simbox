@@ -1,4 +1,4 @@
-import { searchMovies } from './reqMovies';
+import { searchMovies, getMovieDetails } from './reqMovies';
 import { checkStorage } from './storage';
 
-export { searchMovies, checkStorage };
+export { searchMovies, getMovieDetails, checkStorage };

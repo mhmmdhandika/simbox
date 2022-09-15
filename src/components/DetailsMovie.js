@@ -1,24 +1,59 @@
+import { useContext } from 'react';
+import { MovieContext } from '../App';
+import { Loading } from '.';
+
 function DetailsMovie() {
-  return (
-    <section className='border border-red-300'>
+  const { detailsMovie, isLoading } = useContext(MovieContext);
+
+  const filtered = (({
+    Director,
+    Writer,
+    Actors,
+    Year,
+    Type,
+    Genre,
+    Plot,
+    Awards,
+    imdbRating,
+  }) => ({
+    Director,
+    Writer,
+    Actors,
+    Year,
+    Type,
+    Genre,
+    Plot,
+    Awards,
+    imdbRating,
+  }))(detailsMovie);
+
+  const detailsMovieAsArray = Object.entries(filtered);
+
+  return isLoading ? (
+    <Loading />
+  ) : (
+    <div className='grid mx-auto sm:max-w-[90%] lg:grid-cols-2 lg:mt-3'>
       <img
-        src='https://terrigen-cdn-dev.marvel.com/content/prod/1x/avengersendgame_lob_crd_05.jpg'
-        alt='just poster'
-        className='aspect-[2/3]'
+        src={detailsMovie.Poster}
+        alt={detailsMovie.Title}
+        className='aspect-[2/3] justify-self-center lg:row-span-2 lg:h-full'
       />
-      <div>
-        <h1>title movie</h1>
-        <p>Year</p>
-        <p>Type</p>
-        <p>Genre</p>
-        <p>Director</p>
-        <p>Writer</p>
-        <p>Actors</p>
-        <p>Plot</p>
-        <p>Awards</p>
-        <p>IMDB Rating</p>
-      </div>
-    </section>
+      <h1 className='my-4 font-semibold text-3xl text-center'>
+        {detailsMovie.Title}
+      </h1>
+      <table className='mx-5 mb-5'>
+        <tbody>
+          {detailsMovieAsArray.map((item, index) => {
+            return (
+              <tr className='border-y text-left' key={index}>
+                <th className='py-2 align-top'>{item[0]}</th>
+                <td className='pl-2 py-2'>{item[1]}</td>
+              </tr>
+            );
+          })}
+        </tbody>
+      </table>
+    </div>
   );
 }
 export default DetailsMovie;

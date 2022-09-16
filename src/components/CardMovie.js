@@ -6,7 +6,8 @@ import { MovieContext } from '../App';
 
 function CardMovie({ title, year, type, poster, imdbID, typeCard }) {
   const navigate = useNavigate();
-  const { url, setIsLoading, setDetailsMovie } = useContext(MovieContext);
+  const { url, isError, setIsLoading, setDetailsMovie, setIsError } =
+    useContext(MovieContext);
 
   const getImdbID = e => {
     const imdbid =
@@ -19,14 +20,16 @@ function CardMovie({ title, year, type, poster, imdbID, typeCard }) {
 
   const getDetails = async imdbID => {
     setIsLoading(true);
+    setIsError({ ...isError, state: false });
 
     try {
       let resp = await getMovieDetails(url, imdbID);
       setIsLoading(false);
+      setIsError({ ...isError, state: false });
       setDetailsMovie(resp);
     } catch (error) {
       setIsLoading(false);
-      throw new Error(error);
+      setIsError({ state: true, msg: error.msg });
     }
   };
 

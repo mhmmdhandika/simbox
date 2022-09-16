@@ -1,9 +1,9 @@
 import { useContext } from 'react';
 import { MovieContext } from '../App';
-import { Loading } from '.';
+import { Loading, Error } from '.';
 
 function DetailsMovie() {
-  const { detailsMovie, isLoading } = useContext(MovieContext);
+  const { detailsMovie, isLoading, isError } = useContext(MovieContext);
 
   const filtered = (({
     Director,
@@ -29,9 +29,12 @@ function DetailsMovie() {
 
   const detailsMovieAsArray = Object.entries(filtered);
 
-  return isLoading ? (
-    <Loading />
-  ) : (
+  if (isLoading) {
+    return <Loading />;
+  } else if (isError.state) {
+    return <Error />;
+  }
+  return (
     <div className='grid mx-auto sm:max-w-[90%] lg:grid-cols-2 lg:mt-3'>
       <img
         src={detailsMovie.Poster}
@@ -56,4 +59,5 @@ function DetailsMovie() {
     </div>
   );
 }
+
 export default DetailsMovie;

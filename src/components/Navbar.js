@@ -3,7 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import { BiArrowBack as BackIcon } from 'react-icons/bi';
 import { MovieContext } from '../App';
 import { GoSearch } from 'react-icons/go';
-import { searchMovies } from '../features/.';
+import { searchMovies } from '../features/reqMovies';
 
 function Navbar() {
   const location = useLocation();

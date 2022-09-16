@@ -1,6 +1,7 @@
 # Simbox Search Movies
 
-1. React
-2. Tailwind CSS
+1. React Js
+2. React Router 6
 3. React Icons
-4. Undraw
+4. Tailwind CSS
+5. Undraw

@@ -15,6 +15,4 @@ async function getMovieDetails(url, imdbID) {
   return resp;
 }
 
-// TODO: create condition if error
-
 export { searchMovies, getMovieDetails };

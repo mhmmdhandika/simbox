@@ -10,10 +10,9 @@ import {
 import { checkStorage } from './features/storage';
 
 const MovieContext = createContext(null);
-// FIXME: replace api key with env
-const url = 'http://www.omdbapi.com/?apikey=e050880d&';
+const OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
+const url = `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&`;
 
-// create back to home
 function App() {
   const [searchResult, setSearchResult] = useState([]);
   const [detailsMovie, setDetailsMovie] = useState({});

@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from 'react';
+import { useState, useContext } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import { BiArrowBack as BackIcon } from 'react-icons/bi';
 import { MovieContext } from '../App';
@@ -8,31 +8,32 @@ import { searchMovies } from '../features/.';
 function Navbar() {
   const location = useLocation();
   const navigate = useNavigate();
-  const { url, setSearchResult, setIsLoading } = useContext(MovieContext);
+  const { url, isError, setSearchResult, setIsLoading, setIsError } =
+    useContext(MovieContext);
   const [searchValue, setSearchValue] = useState('');
-
-  useEffect(() => console.log(searchValue), [searchValue]);
 
   const handleSubmit = async e => {
     e.preventDefault();
     navigate('/search');
     setIsLoading(true);
+    setIsError({ ...isError, state: false });
 
     try {
       // TODO: try use useMemo to memoization
       const searchedMovies = await searchMovies(url, searchValue);
       setIsLoading(false);
+      setIsError({ ...isError, state: false });
       setSearchResult(searchedMovies?.Search);
     } catch (error) {
-      // TODO: create a error element
       setIsLoading(false);
+      setIsError({ state: true, msg: error.message });
       throw new Error(error);
     }
   };
 
   return (
     <nav className='sticky top-0 p-4 bg-white'>
-      <div className='w-full md:max-w-[97%] mx-auto grid items-center grid-cols-4'>
+      <div className='w-full md:max-w-[97%] mx-auto grid items-center grid-cols-10'>
         <button
           className={`${
             location.pathname === '/' ? 'invisible' : ''
@@ -44,10 +45,12 @@ function Navbar() {
           <BackIcon size='1.5rem' />
         </button>
         {location.pathname === '/details' ? (
-          <h1 className='col-span-2 text-center text-lg'>Details movie</h1>
+          <h1 className='col-start-3 col-span-6 text-center text-lg'>
+            Details movie
+          </h1>
         ) : (
           <form
-            className='w-full col-span-2 flex m-auto bg-slate-200 px-3 py-1 rounded-md xl:max-w-[80%]'
+            className='w-full col-start-3 col-span-6 flex m-auto bg-slate-200 px-3 py-1 rounded-md xl:max-w-[80%]'
             onSubmit={handleSubmit}
           >
             <input

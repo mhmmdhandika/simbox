@@ -40,14 +40,14 @@ function CardMovie({ title, year, type, poster, imdbID, typeCard }) {
         alt={`${title}'s poster`}
         className='border-2 rounded-t-lg aspect-[2/3]'
       />
-      <div className='border-2 border-t-0 rounded-b-lg p-4 text-sm'>
-        <h1 className='text-xl mb-2'>{title}</h1>
+      <div className='border-2 border-t-0 rounded-b-lg p-3 text-sm sm:p-4'>
+        <h1 className='text-lg mb-2 md:text-xl'>{title}</h1>
         <p className='my-2'>Year: {year}</p>
         <p className='mt-2'>Type: {type}</p>
         <div className='flex justify-between mt-2 text-sm'>
           {/* FIXME: change onclick event in these button */}
           <button
-            className='w-full border border-slate-500 rounded-md mr-1 py-1 px-2 hover:bg-slate-500 hover:text-white hover:font-bold'
+            className='w-full border border-slate-500 rounded-md mr-1 py-[0.20rem] sm:py-1 sm:px-2 hover:bg-slate-500 hover:text-white hover:font-bold'
             onClick={e => {
               getDetails(getImdbID(e));
               navigate('/details');

@@ -18,6 +18,10 @@ function App() {
   const [searchResult, setSearchResult] = useState([]);
   const [detailsMovie, setDetailsMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState({
+    state: false,
+    msg: 'Something went wrong',
+  });
 
   checkStorage();
 
@@ -30,9 +34,11 @@ function App() {
             searchResult,
             detailsMovie,
             isLoading,
+            isError,
             setSearchResult,
             setDetailsMovie,
             setIsLoading,
+            setIsError,
           }}
         >
           <Routes>

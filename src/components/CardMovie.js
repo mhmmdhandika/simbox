@@ -16,12 +16,17 @@ function CardMovie({ title, year, type, poster, imdbID, typeCard }) {
 
     try {
       let resp = await getMovieDetails(url, imdbID);
-      setIsLoading(false);
-      setIsError({ ...isError, state: false });
-      setDetailsMovie(resp);
+
+      if (typeof resp === 'object') {
+        setIsLoading(false);
+        setIsError({ ...isError, state: false });
+        setDetailsMovie(resp);
+      } else {
+        await getDetails(imdbID);
+      }
     } catch (error) {
       setIsLoading(false);
-      setIsError({ state: true, msg: error.msg });
+      setIsError({ state: true, msg: error.message });
     }
   };
 

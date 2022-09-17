@@ -1,13 +1,27 @@
-import { useContext } from 'react';
+import { useState, useEffect, useContext } from 'react';
 import { MovieContext } from '../App';
 import { ContainerMovies, CardMovie } from '.';
+import {
+  getMovieDetails,
+  loadSavedMovies,
+  loadedMovies,
+} from '../features/reqMovies';
+import { savedMovies } from '../features/storage';
 
 function LoadContainerMovies() {
-  const { searchResult } = useContext(MovieContext);
+  const { url, setLoadMovies } = useContext(MovieContext);
+
+  loadSavedMovies();
 
   return (
     <ContainerMovies>
-      {searchResult.map(movie => {
+      {loadedMovies.map(movie => {
+        console.log(movie);
+        return <h1>waw</h1>;
+      })}
+      {/* {i.map((movie, index) => {
+        console.log(movie);
+
         const { Title, Year, Type, Poster, imdbID } = movie;
 
         return (
@@ -17,11 +31,13 @@ function LoadContainerMovies() {
             type={Type}
             poster={Poster}
             imdbID={imdbID}
-            key={imdbID}
+            typeCard='searched'
+            key={index}
           />
         );
-      })}
+      })} */}
     </ContainerMovies>
   );
 }
+
 export default LoadContainerMovies;

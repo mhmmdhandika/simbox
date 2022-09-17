@@ -14,6 +14,7 @@ const OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
 const url = `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&`;
 
 function App() {
+  const [loadSavedMovies, setLoadMovies] = useState([]);
   const [searchResult, setSearchResult] = useState([]);
   const [detailsMovie, setDetailsMovie] = useState({});
   const [isLoading, setIsLoading] = useState(false);
@@ -29,11 +30,13 @@ function App() {
       <BrowserRouter>
         <MovieContext.Provider
           value={{
+            loadSavedMovies,
             url,
             searchResult,
             detailsMovie,
             isLoading,
             isError,
+            setLoadMovies,
             setSearchResult,
             setDetailsMovie,
             setIsLoading,

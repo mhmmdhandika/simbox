@@ -21,9 +21,13 @@ function Navbar() {
     try {
       // TODO: try use useMemo to memoization
       const searchedMovies = await searchMovies(url, searchValue);
-      setIsLoading(false);
-      setIsError({ ...isError, state: false });
-      setSearchResult(searchedMovies?.Search);
+      if (searchedMovies === undefined) {
+        handleSubmit(e);
+      } else {
+        setIsLoading(false);
+        setIsError({ ...isError, state: false });
+        setSearchResult(searchedMovies?.Search);
+      }
     } catch (error) {
       setIsLoading(false);
       setIsError({ state: true, msg: error.message });

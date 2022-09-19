@@ -1,8 +1,5 @@
 import swal from 'sweetalert';
 
-const OMDB_API_KEY = process.env.REACT_APP_OMDB_API_KEY;
-console.log(OMDB_API_KEY);
-const url = `http://www.omdbapi.com/?apikey=${OMDB_API_KEY}&`;
 let savedMovies = [];
 const SAVED_MOVIES_KEY = 'SAVED_MOVIES';
 const createLocalStorage = () => localStorage.setItem(SAVED_MOVIES_KEY, '[]');
